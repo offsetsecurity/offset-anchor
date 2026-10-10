@@ -1,0 +1,265 @@
+{
+  "title": "Getting ready with SP 800-53",
+  "intro": "Eight stages, from a fresh install to an authorised system you keep watching. It follows the Risk Management Framework, and each stage says which step it belongs to, so you can line it up with whatever your organisation already calls these things. You do not have to follow the order; anything you can already do, do now. A stage turns green when everything in it is done or marked as not applying to you.",
+  "stages": [
+    {
+      "id": "setup",
+      "name": "Set the product up",
+      "aim": "Get the tool ready and the right people into it. An hour's work, and nothing else goes well without it.",
+      "tasks": [
+        {
+          "id": "setup.people",
+          "title": "Add the people who will do the work",
+          "do": "Go to Users and add everyone who will record work here. Give them the smallest role that lets them do their job: Contributor to record work, Auditor or Read only for people who just need to see it.",
+          "why": "A control catalogue this size is not a one-person job, and every change being recorded against a real name is what an assessor expects to see.",
+          "check": "users.beyondAdmin",
+          "goto": "people"
+        },
+        {
+          "id": "setup.email",
+          "title": "Turn on email",
+          "do": "In Settings, put in your mail server details and send yourself a test message.",
+          "why": "Without it nobody gets reminders about overdue work, and an administrator who forgets their password cannot get back in on their own.",
+          "check": "settings.smtp",
+          "goto": "settings"
+        },
+        {
+          "id": "setup.branding",
+          "title": "Put your logo on reports",
+          "do": "In Reports, upload your organisation's logo.",
+          "why": "Everything you hand to an assessor or an authorising official goes out as a PDF with your name on it. Takes a minute.",
+          "check": "settings.logo",
+          "goto": "reports"
+        },
+        {
+          "id": "setup.backup",
+          "title": "Keep a copy of the backup somewhere else",
+          "do": "A backup runs every night on its own; the line below says when it last ran. Open Backups, press Download on the newest one, and keep that file somewhere other than this server.",
+          "why": "Your control records and evidence are the authorisation package. A backup that only exists on the same machine protects you from very little.",
+          "check": "jobs.backupRan",
+          "goto": "backups"
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "name": "Describe the system",
+      "aim": "RMF Prepare. Say what you are authorising, where it starts and stops, and who signs it off.",
+      "tasks": [
+        {
+          "id": "system.describe",
+          "title": "Name the system and draw its boundary",
+          "do": "Open System & Baseline. Give the system a name, a short description, and write the authorisation boundary: what is inside it, what is outside, and where it connects to anything else. Name the authorising official.",
+          "why": "Everything else is scoped by this. Two people who disagree about the boundary will disagree about every control, and an assessor will ask for it first.",
+          "check": "programme.system",
+          "goto": "system"
+        },
+        {
+          "id": "system.categorise",
+          "title": "Decide the impact level",
+          "do": "Work out what a loss of confidentiality, integrity or availability would mean for the organisation, and settle on Low, Moderate or High. Note how you decided it in the system description.",
+          "why": "FIPS 199 categorisation picks your baseline in the next stage. Getting it wrong either buries you in controls you do not need or leaves the system under-protected.",
+          "goto": "system"
+        },
+        {
+          "id": "system.inventory",
+          "title": "List what the system is made of",
+          "do": "In Assets, record the servers, services, applications, data stores and people inside the boundary. Give each one an owner. The Sample library tab has over eighty to start from.",
+          "why": "CM-8 asks for this inventory, and the controls you later mark as inherited or common only make sense against a list of real components.",
+          "check": "registers.assets",
+          "goto": "assets"
+        }
+      ]
+    },
+    {
+      "id": "baseline",
+      "name": "Choose your baseline",
+      "aim": "RMF Select. Apply the SP 800-53B baseline for your impact level, then tailor it to the system you actually have.",
+      "tasks": [
+        {
+          "id": "baseline.apply",
+          "title": "Apply the baseline",
+          "do": "In System & Baseline, choose Low, Moderate or High. The whole catalogue is scoped in one go: controls in the baseline stay in, everything else is marked not applicable with the reason recorded.",
+          "why": "This is what turns 1,014 controls into the set you are answerable for. Switching later brings controls back rather than losing your work.",
+          "check": "baseline.applied",
+          "goto": "system"
+        },
+        {
+          "id": "baseline.tailor",
+          "title": "Tailor it, and say why",
+          "do": "Go through the controls in scope. If one genuinely does not apply to this system, mark it not applicable and write the reason. If you need a control the baseline leaves out, bring it in.",
+          "why": "Tailoring is expected, and it is judged on the reasons. \"Not applicable: no wireless in the boundary\" is a decision; a blank one looks like an oversight.",
+          "goto": "controls"
+        },
+        {
+          "id": "baseline.parameters",
+          "title": "Fill in the organisation-defined values",
+          "do": "Many controls leave a value for you to set: how often, how long, which roles. Open a control and fill in its parameters. The Gap report and the tailoring report show what is still blank.",
+          "why": "A control that says \"at an organisation-defined frequency\" is not implemented until somebody says what that frequency is. An assessor will ask for the number.",
+          "check": "controls.parameters",
+          "goto": "controls"
+        }
+      ]
+    },
+    {
+      "id": "assign",
+      "name": "Say who does what",
+      "aim": "RMF Implement. Every control in scope needs somebody answerable for it, and a plain statement of who actually operates it.",
+      "tasks": [
+        {
+          "id": "assign.origination",
+          "title": "Record who implements each control",
+          "do": "On each control in scope, set the origination: implemented by this system, inherited from a provider, hybrid, or common across the organisation.",
+          "why": "A great many controls in a hosted system are inherited. Saying so once, on each control, saves arguing about it during an assessment and shows what you truly operate.",
+          "check": "controls.origination",
+          "goto": "controls"
+        },
+        {
+          "id": "assign.owners",
+          "title": "Give every control in scope an owner",
+          "do": "Set an owner on each control that applies, and add their email address if you want the product to remind them about due dates.",
+          "why": "Somebody has to answer for each control when the assessor asks, and keep its evidence current.",
+          "check": "controls.owned",
+          "goto": "controls"
+        },
+        {
+          "id": "assign.status",
+          "title": "Record honestly how far along each control is",
+          "do": "Set each control to not started, in progress or implemented, and write the implementation statement in its notes: what you do, in a few sentences.",
+          "why": "The notes are the body of your system security plan. Written while you implement, they take minutes; written afterwards from memory, they take weeks.",
+          "goto": "controls"
+        }
+      ]
+    },
+    {
+      "id": "write",
+      "name": "Write it down",
+      "aim": "Every family starts with a policy and procedures control. This is that stage, and it is the cheapest set of gaps to close.",
+      "tasks": [
+        {
+          "id": "write.policies",
+          "title": "Write the policies each family asks for",
+          "do": "In Policies, record your policies and procedures. The -1 control in each family, such as AC-1 or CP-1, asks for them, and one document can cover several families.",
+          "why": "These are the easiest controls to satisfy and the most common to be found missing, because everybody assumes somebody else wrote them.",
+          "check": "registers.policies",
+          "goto": "policies"
+        },
+        {
+          "id": "write.approved",
+          "title": "Get them approved and recorded",
+          "do": "Take each policy to whoever can approve it. When they have, set it to Approved and record who approved it and when.",
+          "why": "An unapproved policy is a draft, and a draft is a finding.",
+          "check": "policies.approved",
+          "goto": "policies"
+        },
+        {
+          "id": "write.review",
+          "title": "Put a review date on each one",
+          "do": "Give every policy a review date, usually a year out. The -1 controls ask for review at a frequency you define.",
+          "why": "A policy nobody has looked at in four years tells an assessor more about you than its contents do.",
+          "check": "policies.reviewDates",
+          "goto": "policies"
+        }
+      ]
+    },
+    {
+      "id": "prove",
+      "name": "Collect the proof",
+      "aim": "RMF Assess. Saying a control is implemented is not the same as being able to show it.",
+      "tasks": [
+        {
+          "id": "prove.evidence",
+          "title": "Collect proof for the controls you have in place",
+          "do": "In Evidence, record what proves each control and attach the file: approved documents, configuration exports, scan results, access reviews, training records.",
+          "why": "An assessor samples controls and asks to see them working. Everything you gather now is something you do not have to find in a hurry later.",
+          "check": "evidence.any",
+          "goto": "evidence"
+        },
+        {
+          "id": "prove.linked",
+          "title": "Link each piece of proof to its control",
+          "do": "Open an evidence item and attach the controls it supports.",
+          "why": "Unlinked evidence is a folder of files. Linked evidence answers \"show me\" in one click while the assessor is waiting.",
+          "check": "evidence.linked",
+          "goto": "evidence"
+        },
+        {
+          "id": "prove.dated",
+          "title": "Put a date on every piece of proof",
+          "do": "Record when each item was collected. Anything older than ninety days shows as needing a refresh.",
+          "why": "Proof goes stale. A scan from last year proves what was true last year.",
+          "check": "evidence.dated",
+          "goto": "evidence"
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "name": "Work out the risks",
+      "aim": "What could go wrong with this system, who owns it, and which controls hold it down.",
+      "tasks": [
+        {
+          "id": "risk.register",
+          "title": "Record your risks",
+          "do": "In Risks, write down what could realistically go wrong with this system. Score each one for how likely it is and how bad it would be. The Sample library tab has over fifty to react to.",
+          "why": "Control selection is supposed to follow risk, and the authorising official is being asked to accept risk, not to admire a control list.",
+          "check": "registers.risks",
+          "goto": "risks"
+        },
+        {
+          "id": "risk.owners",
+          "title": "Give every risk an owner and a decision",
+          "do": "Name who owns each risk and say what you are doing: reduce it, accept it, transfer it or avoid it.",
+          "why": "A risk with no owner and no decision is a list entry. The authorising official will want to know who holds each one.",
+          "check": "risks.owned",
+          "goto": "risks"
+        },
+        {
+          "id": "risk.linked",
+          "title": "Link each risk to the controls that reduce it",
+          "do": "Open each risk you are reducing and attach the controls that deal with it.",
+          "why": "It shows the connection between what worries you and what you are doing about it, and it shows up fast when a serious risk has nothing behind it.",
+          "check": "risks.linked",
+          "goto": "risks"
+        }
+      ]
+    },
+    {
+      "id": "authorise",
+      "name": "Get authorised",
+      "aim": "RMF Authorize and Monitor. Hand over the package, record the decision, and keep it true afterwards.",
+      "tasks": [
+        {
+          "id": "authorise.poam",
+          "title": "Turn every weakness into a plan",
+          "do": "Record each weakness in Findings, with an owner and a due date, and raise the work in Tasks. That list is your plan of action and milestones.",
+          "why": "CA-5 asks for exactly this. An authorising official will accept known weaknesses with a credible plan far sooner than a package that pretends there are none.",
+          "check": "findings.owned",
+          "goto": "findings"
+        },
+        {
+          "id": "authorise.pack",
+          "title": "Put the package together",
+          "do": "Export the Executive summary, the Gap report, the Baseline and tailoring report, the Risk register and the Evidence register, and hand them over with your policies.",
+          "why": "Between them they are the system security plan, the tailoring record, the risk picture and the evidence index, dated and attributed.",
+          "check": "reports.exported",
+          "goto": "reports"
+        },
+        {
+          "id": "authorise.decision",
+          "title": "Record the authorisation decision",
+          "do": "When the authorising official decides, record the date it was issued and the date it expires in System & Baseline, and keep the signed letter in Evidence.",
+          "why": "The expiry date is the one everybody forgets until the month it lapses.",
+          "goto": "system"
+        },
+        {
+          "id": "authorise.monitor",
+          "title": "Keep it true",
+          "do": "Agree what you check and how often: scans, access reviews, evidence refreshes, control reassessment, and the risk register. Book them in Tasks with owners and dates.",
+          "why": "Continuous monitoring is the part of the framework that never finishes, and it is what an authorisation depends on staying valid.",
+          "goto": "tasks"
+        }
+      ]
+    }
+  ]
+}

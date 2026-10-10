@@ -1,0 +1,31 @@
+{
+  "id": "anchor",
+  "product": "Offset Anchor",
+  "edition": "",
+  "framework": "NIST SP 800-53 Rev. 5",
+  "frameworkShort": "NIST SP 800-53 r5",
+  "source": "NIST SP 800-53 Rev. 5 OSCAL catalog and SP 800-53B baselines — U.S. Government works, not subject to copyright.",
+  "disclaimer": "Offset Anchor is not affiliated with, endorsed by, or certified by NIST.",
+  "contact": "info@offsetsecurity.net",
+  "themeLabel": "Family",
+  "itemLabel": "Control",
+  "features": {
+    "baselines": true,
+    "parameters": true,
+    "enhancements": true,
+    "origination": true,
+    "journey": true,
+    "ismsRegisters": true,
+    "calendar": true,
+    "help": true,
+    "demoData": true
+  },
+  "counts": {
+    "families": 20,
+    "controls": 1014,
+    "withParameters": 679,
+    "baselineLow": 149,
+    "baselineModerate": 287,
+    "baselineHigh": 370
+  }
+}
