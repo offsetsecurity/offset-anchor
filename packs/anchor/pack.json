@@ -18,7 +18,8 @@
     "ismsRegisters": true,
     "calendar": true,
     "help": true,
-    "demoData": true
+    "demoData": true,
+    "readiness": true
   },
   "counts": {
     "families": 20,
@@ -27,5 +28,21 @@
     "baselineLow": 149,
     "baselineModerate": 287,
     "baselineHigh": 370
+  },
+  "readiness": {
+    "auditor": "security control assessor",
+    "auditorShort": "assessor",
+    "finding": "finding",
+    "findings": "findings",
+    "keyDate": "control assessment",
+    "ledBy": "Assessed by",
+    "refs": {
+      "policy": "PL-1",
+      "finding": "CA-5",
+      "vendor": "SA-9",
+      "audit": "CA-2",
+      "review": "CA-7",
+      "risk": "RA-3"
+    }
   }
 }
