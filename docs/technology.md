@@ -85,7 +85,7 @@ changing the wording of a requirement never means touching the application.
 | | |
 |---|---|
 | Framework | NIST SP 800-53 Rev. 5 |
-| What you work through | 1014 controls, in 20 familys |
+| What you work through | 1014 controls, in 20 families |
 | Called | Control / Family |
 | Guidance per item | Plain English: what it means, what to do, what an assessor looks for, what proof to keep |
 | Get ready | 8 stages, 26 steps, 21 checked for you |
